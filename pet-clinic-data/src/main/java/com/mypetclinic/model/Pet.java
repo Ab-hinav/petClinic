@@ -28,5 +28,9 @@ public class Pet extends BaseEntity {
     private Set<Visit> visits = new HashSet<>();
     private LocalDate birthDate;
 
+    @Override
+    public String toString() {
+        return name;
+    }
 
 }

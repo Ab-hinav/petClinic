@@ -29,7 +29,7 @@ public class OwnerController {
 //    public String listOwners(Model model) {
 //        model.addAttribute("owners", ownerService.findAll());
 //        return "owners/index";
-//    }
+//    } 2
 
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
@@ -55,7 +55,8 @@ public class OwnerController {
             owner = results.get(0);
             return "redirect:/owners/" + owner.getId();
         } else {
-            model.addAttribute("selections", results);
+            System.out.println("results.size() = " + results.size());
+            model.addAttribute("listOwners", results);
             return "owners/ownersList";
         }
     }
