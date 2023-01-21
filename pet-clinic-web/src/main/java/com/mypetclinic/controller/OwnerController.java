@@ -36,6 +36,11 @@ public class OwnerController {
         dataBinder.setDisallowedFields("id");
     }
 
+    @ModelAttribute("owner")
+    public Owner findOwner(@PathVariable(name = "ownerId", required = false) Long ownerId) {
+        return ownerId == null ? new Owner() : ownerService.findById(ownerId);
+    }
+
     @RequestMapping({"/find"})
     public String findOwners(Model model) {
         model.addAttribute("owner", new Owner());
@@ -100,9 +105,10 @@ public class OwnerController {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         }
 
-        owner.setId(ownerId);
-        ownerService.save(owner);
-        return "redirect:/owners/"+ownerId;
+//        owner.setId(ownerId);
+        Owner saveOwner = ownerService.save(owner);
+        saveOwner.setId(ownerId);
+        return "redirect:/owners/"+saveOwner.getId();
     }
 
 

@@ -9,6 +9,9 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -142,14 +145,31 @@ class OwnerControllerTest {
                 .andExpect(model().attributeExists("owner"));
     }
 
+//    @Test
+//    void processUpdateOwnerForm() throws Exception {
+//        Owner owner = new Owner();
+//        owner.setId(1L);
+//        when(ownerService.save(ArgumentMatchers.any())).thenReturn(owner);
+//        mockMvc.perform(post("/owners/{id}/edit",1L))
+//                        .c
+//        mockMvc.perform(post("/owners/{ownerId}/edit",1L))
+//                .contentType("application/json")
+//                .content(asJsonString(owner))
+//                .andExpect(status().is3xxRedirection())
+//                .andExpect(view().name("redirect:/owners/1"))
+//                .andExpect(model().attributeExists("owner"));
+//
+//        verify(ownerService).save(ArgumentMatchers.any());
+//    }
+
     @Test
     void processUpdateOwnerForm() throws Exception {
-        Owner owner = new Owner();
-        owner.setId(1L);
-        when(ownerService.save(ArgumentMatchers.any())).thenReturn(owner);
+        when(ownerService.save(ArgumentMatchers.any())).thenReturn(new Owner());
+
         mockMvc.perform(post("/owners/1/edit"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/owners/1"));
+                .andExpect(view().name("redirect:/owners/1"))
+                .andExpect(model().attributeExists("owner"));
 
         verify(ownerService).save(ArgumentMatchers.any());
     }
