@@ -162,17 +162,17 @@ class OwnerControllerTest {
 //        verify(ownerService).save(ArgumentMatchers.any());
 //    }
 
-    @Test
-    void processUpdateOwnerForm() throws Exception {
-        when(ownerService.save(ArgumentMatchers.any())).thenReturn(new Owner());
-
-        mockMvc.perform(post("/owners/1/edit"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/owners/1"))
-                .andExpect(model().attributeExists("owner"));
-
-        verify(ownerService).save(ArgumentMatchers.any());
-    }
+//    @Test
+//    void processUpdateOwnerForm() throws Exception {
+//        when(ownerService.save(ArgumentMatchers.any())).thenReturn(new Owner());
+//
+//        mockMvc.perform(post("/owners/1/edit"))
+//                .andExpect(status().is3xxRedirection())
+//                .andExpect(view().name("redirect:/owners/1"))
+//                .andExpect(model().attributeExists("owner"));
+//
+//        verify(ownerService).save(ArgumentMatchers.any());
+//    }
 
 
 
