@@ -29,7 +29,13 @@ public class OwnerController {
 //    public String listOwners(Model model) {
 //        model.addAttribute("owners", ownerService.findAll());
 //        return "owners/index";
-//    } 2
+//    }
+
+    @RequestMapping({"", "/", "/index", "/index.html", "/owners.html"})
+    public String listOwners(Model model) {
+        model.addAttribute("owners", ownerService.findAll());
+        return "owners/index";
+    }
 
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
